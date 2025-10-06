@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>html,body,#player{height:100%; margin:0; background:#000}</style>
+    <script>
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(tag);
+
+      var player;
+      function onYouTubeIframeAPIReady() {
+        // Replace VIDEO_ID dynamically if you build UI to inject IDs
+        player = new YT.Player('player', {
+          height: '100%',
+          width: '100%',
+          videoId: 'dQw4w9WgXcQ', // placeholder
+          playerVars: { 'playsinline': 1, 'rel': 0, 'controls': 1 },
+          events: {
+            'onReady': onPlayerReady
+          }
+        });
+      }
+      function onPlayerReady(event) {
+        // Auto-play when ready (user gesture may be required on some Android versions)
+        // event.target.playVideo();
+      }
+
+      // Helpers for Android-JS bridge (optional)
+      function playVideo(videoId){
+        if(player && videoId) player.loadVideoById(videoId);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="player"></div>
+  </body>
+</html>
